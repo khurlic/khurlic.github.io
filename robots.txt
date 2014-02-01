@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 # www.robotstxt.org/
 # http://code.google.com/web/controlcrawlindex/
 
 User-agent: *
+=======
+User-agent: *
+Disallow: 
+
+Sitemap: http://khurlic.github.io/sitemap.xml 
+>>>>>>> cf5748ccf1274897484cea23967440f6019a64d1
