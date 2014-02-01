@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-<<<<<<< HEAD
 
   <title><![CDATA[Keith Hurlic]]></title>
   <link href="http://khurlic.github.io/atom.xml" rel="self"/>
   <link href="http://khurlic.github.io/"/>
-  <updated>2014-01-31T16:44:06-08:00</updated>
-=======
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://khurlic.github.io/atom.xml" rel="self"/>
-  <link href="http://khurlic.github.io/"/>
-  <updated>2014-01-30T22:07:21-08:00</updated>
->>>>>>> cf5748ccf1274897484cea23967440f6019a64d1
+  <updated>2014-01-31T16:56:56-08:00</updated>
   <id>http://khurlic.github.io/</id>
   <author>
     <name><![CDATA[Keith Hurlic]]></name>
@@ -21,7 +14,6 @@
 
   
   <entry>
-<<<<<<< HEAD
     <title type="html"><![CDATA[xen find my mac]]></title>
     <link href="http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac/"/>
     <updated>2014-01-31T15:51:36-08:00</updated>
@@ -49,8 +41,6 @@ mac address of a vm running on Citrix Xen Server.</p>
   </entry>
   
   <entry>
-=======
->>>>>>> cf5748ccf1274897484cea23967440f6019a64d1
     <title type="html"><![CDATA[Channel Bonding Interfaces the RedHat 6.x way]]></title>
     <link href="http://khurlic.github.io/blog/2014/01/30/bonding-interfaces/"/>
     <updated>2014-01-30T20:35:32-08:00</updated>
