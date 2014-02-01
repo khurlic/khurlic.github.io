@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: xen | Keith Hurlic]]></title>
+  <link href="http://khurlic.github.io/blog/categories/xen/atom.xml" rel="self"/>
+  <link href="http://khurlic.github.io/"/>
+  <updated>2014-01-31T16:44:06-08:00</updated>
+  <id>http://khurlic.github.io/</id>
+  <author>
+    <name><![CDATA[Keith Hurlic]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[xen find my mac]]></title>
+    <link href="http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac/"/>
+    <updated>2014-01-31T15:51:36-08:00</updated>
+    <id>http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac</id>
+    <content type="html"><![CDATA[<p>Not all companies will hand you a shiny new or old windows laptop. Not all companies
+will purchase a Windows license to run as a VM. This is will force you to
+use the cli to get your job done. The blog post will show you have to find the
+mac address of a vm running on Citrix Xen Server.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-list name-label<span class="o">=</span>&lt;your vm name here&gt; <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 3df485ee-0e99-2851-cf6c-e0c7517e68fd&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vif-list vm-uuid<span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd <span class="nv">params</span><span class="o">=</span>MAC
+</span><span class='line'>MAC <span class="o">(</span> RO<span class="o">)</span>    : 3a:c3:6f:ee:ab:c8
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>
