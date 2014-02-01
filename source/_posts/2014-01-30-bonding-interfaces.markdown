@@ -3,7 +3,7 @@ layout: post
 title: "Channel Bonding Interfaces the RedHat 6.x way"
 date: 2014-01-30 20:35:32 -0800
 comments: true
-categories: tech, linux
+categories: tech linux
 ---
 
 Recently at work, I received an email from my networking team on why they were seeing the following error.
