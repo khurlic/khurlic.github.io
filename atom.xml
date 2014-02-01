@@ -4,7 +4,7 @@
   <title><![CDATA[Keith Hurlic]]></title>
   <link href="http://khurlic.github.io/atom.xml" rel="self"/>
   <link href="http://khurlic.github.io/"/>
-  <updated>2014-01-31T16:56:56-08:00</updated>
+  <updated>2014-01-31T17:31:11-08:00</updated>
   <id>http://khurlic.github.io/</id>
   <author>
     <name><![CDATA[Keith Hurlic]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[xen delete my vm]]></title>
+    <link href="http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm/"/>
+    <updated>2014-01-31T17:00:49-08:00</updated>
+    <id>http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm</id>
+    <content type="html"><![CDATA[<p>This blog post will show you how to delete the vm of your chooseing and it&rsquo;s
+primary disk from a Citrix Xen Server. A few things to keep in mind. Some of
+the disk will show up as xvda vs hda. This depends on how you have configured
+your server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-list name-label<span class="o">=</span>testserver <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 3df485ee-0e99-2851-cf6c-e0c7517e68fd
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-shutdown <span class="nv">uuid</span><span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vbd-list vm-uuid<span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd <span class="nv">device</span><span class="o">=</span>hda <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : bfdb0ba5-b397-e6f5-3ba1-5aa9df6dd0ce
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vdi-list vbd-uuids<span class="o">=</span>bfdb0ba5-b397-e6f5-3ba1-5aa9df6dd0ce <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 07d5c7f8-40d1-4276-ba0c-5fde960ab527
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vdi-destroy <span class="nv">uuid</span><span class="o">=</span>07d5c7f8-40d1-4276-ba0c-5fde960ab527
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-destroy <span class="nv">uuid</span><span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[xen find my mac]]></title>
