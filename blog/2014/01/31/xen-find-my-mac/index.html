@@ -1,126 +1,102 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>xen find my mac - Keith Hurlic</title>
-  <meta name="author" content="Keith Hurlic">
-  <link rel="author" href="humans.txt">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>xen find my mac  | Keith Hurlic</title>
 
-  
-    
-  
-  <meta name="description" content="Not all companies will hand you a shiny new or old windows laptop. Not all companies
-will purchase a Windows license to run as a VM. This is will &hellip;">
-  
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Keith Hurlic"> 
 
-  
-  <link rel="canonical" href="http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac/">
-  <link href="/favicon.png" rel="icon">
-  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Keith Hurlic" type="application/atom+xml">
-  <meta name="og:type" content="website" />
-  <meta name="og:site_name" content="Keith Hurlic" />
-  <meta name="og:title" content="xen find my mac" />
-  <meta name="og:description" content="Not all companies will hand you a shiny new or old windows laptop. Not all companies
-will purchase a Windows license to run as a VM. This is will &hellip;" />
-  <meta name="og:url" content="http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac/"/>
-  <meta name="url" content="http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac/">
-  
-  <meta name="subject" content="linuxtechxen"/>
-  <meta name="category" content="linuxtechxen"/>
-  
-  <meta name="distribution" content="global">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<meta name="description" content="from Los Angeles"> <meta name="keywords" content="">
 
-  
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+	<link href="/atom.xml" rel="alternate" title="Keith Hurlic" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
 </head>
 
-<body   >
-  <nav role="navigation"><div class="navbar">
-  <div class="navbar-inner">
-    <a class="brand" href="/">Keith Hurlic</a>
-    <ul class="nav">
-      <li><a href="/">Home</a></li>
-      <li><a href="/blog/archives">Archives</a></li>
-    </ul>
-    <ul class="nav" data-subscription="rss">
-      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-      
-    </ul>
-      
-    <form class="navbar-form" action="http://google.com/search" method="get">
-      <fieldset role="search">
-        <input type="hidden" name="q" value="site:khurlic.github.io" />
-        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
-      </fieldset>
-    </form>
-      
-    
-  </div>
-</div>
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Keith Hurlic</a></h1>
+<h4>Sr. Systems Engineer by day. Forever a Skateboarder at heart.</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
 </nav>
-  <div class="wrapper_single">
-    <div class="container">
-      <article class="span8 offset2" role="article">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title">Xen Find My Mac</h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
-  
-
- - 
-        
-
-
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:khurlic.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
 
 
+</header>
 
-
-
-
-  
-
-
-<time datetime="2014-01-31T15:51:36-08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>, <a class='category' href='/blog/categories/xen/'>xen</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Not all companies will hand you a shiny new or old windows laptop. Not all companies
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Xen Find My Mac</h2>
+	<div class="entry-content"><p>Not all companies will hand you a shiny new or old windows laptop. Not all companies
 will purchase a Windows license to run as a VM. This is will force you to
 use the cli to get your job done. The blog post will show you have to find the
 mac address of a vm running on Citrix Xen Server.</p>
@@ -142,18 +118,8 @@ mac address of a vm running on Citrix Xen Server.</p>
 </div>
 
 
-  <footer>
-    <p class="meta">
-      
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
-  
-
- - 
-      
+<div class="meta">
+	<div class="date">
 
 
 
@@ -165,20 +131,20 @@ mac address of a vm running on Citrix Xen Server.</p>
   
 
 
-<time datetime="2014-01-31T15:51:36-08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time> - 
-      
+<time datetime="2014-01-31T15:51:36-08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time></div>
+	
 
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>, <a class='category' href='/blog/categories/xen/'>xen</a>
-  
-</span>
+<div class="tags">
+
+	<a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>, <a class='category' href='/blog/categories/xen/'>xen</a>
+
+</div>
 
 
-    </p>
-    
-      <div class="share">
+	
+</div></article>
+
+	<div class="share">
 	<div class="addthis_toolbox addthis_default_style ">
 	
 	
@@ -192,124 +158,24 @@ posted in
   <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
 </div>
 
-    
-    
-      <a class="pull-left" href="/blog/2014/01/30/bonding-interfaces/" title="Previous Post: Channel Bonding Interfaces the RedHat 6.x way">&laquo; Channel Bonding Interfaces the RedHat 6.x way</a>
-    
-    
-      <a class="pull-right" href="/blog/2014/01/31/xen-delete-my-vm/" title="Next Post: xen delete my vm">xen delete my vm &raquo;</a>
-    
-  </footer>
 
 </div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
 
-        
-      </article>
-    </div>
-  </div>
-  <div id="footer-widgets">
-  <div class="container">
-    <div class="row">
-  <div class="span3">
-    <h2>recent posts</h2>
-    <ul class="recent_posts">
-      
-        <li>
-          <a href="/blog/2014/01/31/xen-delete-my-vm/">xen delete my vm</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/01/31/xen-find-my-mac/">xen find my mac</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/01/30/bonding-interfaces/">Channel Bonding Interfaces the RedHat 6.x way</a>
-        </li>
-      
-    </ul>
-    <h2><a href="/blog/archives">archives</a></h2>
-  </div>
-  <div class="span3">
-    
+    Keith Hurlic
 
-  </div>
-  <div class="span4">
-    
-
-  </div>
-  <div class="span2">
-    <h2>found on</h2>
-
-<a href="https://github.com/khurlic/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
-
-
-
-
-
-
-
-
-
-<a href="https://plus.google.com/+KeithHurlic?rel=author" rel="tooltip" title="Google Plus"><img class="social_icon" title="Google Plus" alt="Google Plus icon" src="/images/glyphicons_386_google_plus.png"></a>
-
-
-
-
-
-
-  </div>
-</div>
-
-  </div>
-</div>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-left">
-  <a href="/">Keith Hurlic</a>
-  - Copyright &copy; 2014 - Keith Hurlic
-</p>
-<p class="pull-right">
-  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
-  
-    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
-  
-</p>
-
-  </div>
+<br>
+Powered by Octopress.
 </footer>
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
-<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
-<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
-<script src="/javascripts/custom.js" type="text/javascript"></script>
-
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
 
 
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
 
 
 
