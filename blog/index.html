@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Keith Hurlic</title>
+  <meta name="author" content="Keith Hurlic">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+    
+  
+  <meta name="description" content=" from Los Angeles ">
+  
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://khurlic.github.io/blog/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Keith Hurlic" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="Keith Hurlic" />
+  <meta name="og:title" content="Keith Hurlic" />
+  <meta name="og:description" content=" from Los Angeles " />
+  <meta name="og:url" content="http://khurlic.github.io/blog/index.html"/>
+  <meta name="url" content="http://khurlic.github.io/blog/index.html">
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  
+
+
+    <article class="post"><div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/31/xen-delete-my-vm/">Xen Delete My Vm</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-31T17:00:49-08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>, <a class='category' href='/blog/categories/xen/'>xen</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This blog post will show you how to delete the vm of your chooseing and it&rsquo;s
+primary disk from a Citrix Xen Server. A few things to keep in mind. Some of
+the disk will show up as xvda vs hda. This depends on how you have configured
+your server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-list name-label<span class="o">=</span>testserver <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 3df485ee-0e99-2851-cf6c-e0c7517e68fd
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-shutdown <span class="nv">uuid</span><span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vbd-list vm-uuid<span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd <span class="nv">device</span><span class="o">=</span>hda <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : bfdb0ba5-b397-e6f5-3ba1-5aa9df6dd0ce
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vdi-list vbd-uuids<span class="o">=</span>bfdb0ba5-b397-e6f5-3ba1-5aa9df6dd0ce <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 07d5c7f8-40d1-4276-ba0c-5fde960ab527
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vdi-destroy <span class="nv">uuid</span><span class="o">=</span>07d5c7f8-40d1-4276-ba0c-5fde960ab527
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-destroy <span class="nv">uuid</span><span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+</div>
+</article>
+
+
+    <article class="post"><div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/31/xen-find-my-mac/">Xen Find My Mac</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-31T15:51:36-08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>, <a class='category' href='/blog/categories/xen/'>xen</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Not all companies will hand you a shiny new or old windows laptop. Not all companies
+will purchase a Windows license to run as a VM. This is will force you to
+use the cli to get your job done. The blog post will show you have to find the
+mac address of a vm running on Citrix Xen Server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-list name-label<span class="o">=</span>&lt;your vm name here&gt; <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 3df485ee-0e99-2851-cf6c-e0c7517e68fd
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vif-list vm-uuid<span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd <span class="nv">params</span><span class="o">=</span>MAC
+</span><span class='line'>MAC <span class="o">(</span> RO<span class="o">)</span>    : 3a:c3:6f:ee:ab:c8
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+</div>
+</article>
+
+
+    <article class="post"><div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/30/bonding-interfaces/">Channel Bonding Interfaces the RedHat 6.x Way</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-30T20:35:32-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2014</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently at work, I received an email from my networking team on why they were seeing the following error.</p>
+
+<p>%SW_MATM-4-MACFLAP_NOTIF: Host dddd.dddd.dddd in vlan 100 is flapping between port Te1/0/1 and port Gi2/0/22.</p>
+
+<p>I tracked down the mac from the message above. (mac changed for security) I logged in to the box and discovered that the nic bond was running in mode 0 instead of mode 1 which it was configured for. The root cause was Red Hat changed the way parameters for the bonding kernel module were loaded. Starting in RHEL 6.0 you’ll need to add the bonding options to the bonded interface file (ifcfg-bondX).</p>
+
+<p>Here are the commands I took to correct the issue.</p>
+
+<p><strong>Verify bonding mode</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># cat /sys/class/net/bond0/bonding/mode</span>
+</span><span class='line'>balance-rr 0
+</span><span class='line'>
+</span><span class='line'><span class="c"># cat /proc/net/bonding/bond0 | grep -i mode</span>
+</span><span class='line'>Bonding Mode: load balancing <span class="o">(</span>round-robin<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># cat /etc/modprobe.d/bonding.conf</span>
+</span><span class='line'><span class="nb">alias </span>bond0 bonding
+</span><span class='line'>options bond0 <span class="nv">mode</span><span class="o">=</span>1 <span class="nv">miimon</span><span class="o">=</span>100
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Make changes</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># sed -i&#39;.bak&#39; -e &#39;/options.*/d&#39; /etc/modprobe.d/bonding.conf</span>
+</span><span class='line'><span class="c"># echo &#39;BONDING_OPTS=&quot;mode=1 miimon=100&quot;&#39; &gt;&gt; /etc/sysconfig/networking-scripts/ifcfg-bond0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Restart Network</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># service network restart</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Verify bonding mode</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># cat /sys/class/net/bond0/bonding/mode</span>
+</span><span class='line'>active-backup 1
+</span><span class='line'>
+</span><span class='line'><span class="c"># cat /proc/net/bonding/bond0 | grep -i mode</span>
+</span><span class='line'>Bonding Mode: fault-tolerance <span class="o">(</span>active-backup<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># cat /etc/modprobe.d/bonding.conf</span>
+</span><span class='line'><span class="nb">alias </span>bond0 bonding
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Setting up nic bonding from scratch</h1>
+
+<hr />
+
+<p>Change all of the example IP addresses from 1.1.1.x to the IP addresses that work in your environment.</p>
+
+<p>1.) Edit the  /etc/modprobe.d/bonding.conf</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/modprobe.d/bonding.conf</span>
+</span><span class='line'><span class="nb">alias </span>bond0 bonding
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2.) Edit the /etc/sysconfig/network</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/sysconfig/network</span>
+</span><span class='line'><span class="nv">NETWORKING</span><span class="o">=</span>yes
+</span><span class='line'><span class="nv">HOSTNAME</span><span class="o">=</span>your.hostname.here
+</span><span class='line'><span class="nv">GATEWAY</span><span class="o">=</span>1.1.1.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.) Edit the /etc/resolv.conf</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/resolv.conf</span>
+</span><span class='line'>search example.com
+</span><span class='line'>nameserver 1.1.1.2
+</span><span class='line'>nameserver 1.1.1.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4.) Edit the /etc/sysconfig/network-scripts/ifcfg-bond0</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-bond0</span>
+</span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>bond0
+</span><span class='line'><span class="nv">USERCTL</span><span class="o">=</span>no
+</span><span class='line'><span class="nv">BOOTPROTO</span><span class="o">=</span>none
+</span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span>yes
+</span><span class='line'><span class="nv">USERCTL</span><span class="o">=</span>no
+</span><span class='line'><span class="nv">IPADDR</span><span class="o">=</span>1.1.1.100
+</span><span class='line'><span class="nv">NETMASK</span><span class="o">=</span>255.255.255.0
+</span><span class='line'><span class="nv">BONDING_OPTS</span><span class="o">=</span>”mode<span class="o">=</span>1 <span class="nv">miimon</span><span class="o">=</span>100″
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5.) Edit the  /etc/sysconfig/network-scripts/ifcfg-eth0</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-eth0</span>
+</span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>”eth0″
+</span><span class='line'><span class="nv">SLAVE</span><span class="o">=</span>”yes”
+</span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span>”yes”
+</span><span class='line'><span class="nv">MASTER</span><span class="o">=</span>”bond0″
+</span><span class='line'><span class="nv">USERCTL</span><span class="o">=</span>”no”
+</span><span class='line'><span class="nv">BOOTPROTO</span><span class="o">=</span>none
+</span><span class='line'><span class="nv">NM_CONTROLLED</span><span class="o">=</span>”no”
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>6.) Edit the  /etc/sysconfig/network-scripts/ifcfg-eth1</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-eth1</span>
+</span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>”eth1″
+</span><span class='line'><span class="nv">SLAVE</span><span class="o">=</span>”yes”
+</span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span>”yes”
+</span><span class='line'><span class="nv">MASTER</span><span class="o">=</span>”bond0″
+</span><span class='line'><span class="nv">USERCTL</span><span class="o">=</span>”no”
+</span><span class='line'><span class="nv">BOOTPROTO</span><span class="o">=</span>none
+</span><span class='line'><span class="nv">NM_CONTROLLED</span><span class="o">=</span>”no”
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>7.) Load the bonding kernel module</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># modprobe bonding</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>8.) restart the network</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># service network restart</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>9.) Verify changes</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ping 1.1.1.1</span>
+</span><span class='line'>
+</span><span class='line'>PING 1.1.1.1 <span class="o">(</span>1.1.1.1<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+</span><span class='line'>64 bytes from 1.1.1.1: <span class="nv">icmp_seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>255 <span class="nb">time</span><span class="o">=</span>1.89 ms
+</span><span class='line'>64 bytes from 1.1.1.1: <span class="nv">icmp_seq</span><span class="o">=</span>2 <span class="nv">ttl</span><span class="o">=</span>255 <span class="nb">time</span><span class="o">=</span>0.872 ms
+</span><span class='line'>64 bytes from 1.1.1.1: <span class="nv">icmp_seq</span><span class="o">=</span>3 <span class="nv">ttl</span><span class="o">=</span>255 <span class="nb">time</span><span class="o">=</span>2.25 ms
+</span><span class='line'>64 bytes from 1.1.1.1: <span class="nv">icmp_seq</span><span class="o">=</span>4 <span class="nv">ttl</span><span class="o">=</span>255 <span class="nb">time</span><span class="o">=</span>0.880 ms
+</span><span class='line'>
+</span><span class='line'>— 1.1.1.1 ping statistics —
+</span><span class='line'>4 packets transmitted, 4 received, 0% packet loss, <span class="nb">time </span>3003ms
+</span><span class='line'>rtt min/avg/max/mdev <span class="o">=</span> 0.872/1.476/2.253/0.612 ms
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># host www.google.com</span>
+</span><span class='line'>host www.google.com
+</span><span class='line'>www.google.com has address 74.125.224.177
+</span><span class='line'>www.google.com has address 74.125.224.178
+</span><span class='line'>www.google.com has address 74.125.224.179
+</span><span class='line'>www.google.com has address 74.125.224.180
+</span><span class='line'>www.google.com has address 74.125.224.176
+</span><span class='line'>www.google.com has IPv6 address 2607:f8b0:4007:800::1010
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># cat /proc/net/bonding/bond0 | grep -i mode</span>
+</span><span class='line'>Bonding Mode: fault-tolerance <span class="o">(</span>active-backup<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># cat /sys/class/net/bond0/bonding/mode</span>
+</span><span class='line'>active-backup 1
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ifdown eth0</span>
+</span><span class='line'>from another host ping your server, <span class="k">if </span>the ping is good, <span class="k">then </span>ssh to it. If you can reach your server via ping and ssh <span class="k">then </span>the nic bonding is working as it should.
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ifup eth0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reference.</p>
+
+<p><a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-networkscripts-interfaces-chan.html" title="RedHat Docs">Redhat Docs for bonding</a></p>
+</div>
+  
+  
+
+
+</div>
+</article>
+
+<nav id="pagenavi">
+    
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2014/01/31/xen-delete-my-vm/">xen delete my vm</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2014/01/31/xen-find-my-mac/">xen find my mac</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2014/01/30/bonding-interfaces/">Channel Bonding Interfaces the RedHat 6.x way</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/khurlic/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+
+
+<a href="https://plus.google.com/+KeithHurlic?rel=author" rel="tooltip" title="Google Plus"><img class="social_icon" title="Google Plus" alt="Google Plus icon" src="/images/glyphicons_386_google_plus.png"></a>
+
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">Keith Hurlic</a>
+  - Copyright &copy; 2014 - Keith Hurlic
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
+</p>
+
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>
