@@ -3,7 +3,7 @@ layout: post
 title: "xen delete my vm"
 date: 2014-01-31 17:00:49 -0800
 comments: true
-categories: 
+categories: linux tech xen
 ---
 
 This blog post will show you how to delete the vm of your chooseing and it's 
