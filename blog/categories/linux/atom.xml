@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | Keith Hurlic]]></title>
   <link href="http://khurlic.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://khurlic.github.io/"/>
-  <updated>2014-02-02T15:41:12-08:00</updated>
+  <updated>2014-02-02T23:07:12-08:00</updated>
   <id>http://khurlic.github.io/</id>
   <author>
     <name><![CDATA[Keith Hurlic]]></name>
@@ -18,7 +18,7 @@
     <link href="http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm/"/>
     <updated>2014-01-31T17:00:49-08:00</updated>
     <id>http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm</id>
-    <content type="html"><![CDATA[<p>This blog post will show you how to delete the vm of your chooseing and it&rsquo;s
+    <content type="html"><![CDATA[<p>This blog post will show you how to delete the vm of your choosing and it&rsquo;s
 primary disk from a Citrix Xen Server. A few things to keep in mind. Some of
 the disk will show up as xvda vs hda. This depends on how you have configured
 your server.</p>
@@ -52,6 +52,16 @@ your server.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-destroy <span class="nv">uuid</span><span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>Definitions</h4>
+
+<p><strong>Virtual Block Device (VBD)</strong>: A VBD is a software object that connects a VM to the VDI, which represents the contents of the virtual disk. The VBD has the attributes which tie the VDI to the VM (is it bootable, its read/write metrics, and so on), while the VDI has the information on the physical attributes of the virtual disk (which type of SR, whether the disk is shareable, whether the media is read/write or read only, and so on).</p>
+
+<p><strong>Virtual Disk Image (VDI)</strong>: A VDI is a software object that represents the contents of the virtual disk seen by a VM, as opposed to the VBD, which is a connector object that ties a VM to the VDI. The VDI has the information on the physical attributes of the virtual disk (which type of SR, whether the disk is shareable, whether the media is read/write or read only, and so on), while the VBD has the attributes which tie the VDI to the VM (is it bootable, its read/write metrics, and so on).</p>
+
+<p><em>Xen Server version 6.2.0 documentation (cli xe command vbd).</em><br/>
+<em>Retrieved from</em><br/>
+<a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vbd">cli xe command reference</a></p>
 ]]></content>
   </entry>
   
@@ -76,6 +86,14 @@ mac address of a vm running on Citrix Xen Server.</p>
 </span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vif-list vm-uuid<span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd <span class="nv">params</span><span class="o">=</span>MAC
 </span><span class='line'>MAC <span class="o">(</span> RO<span class="o">)</span>    : 3a:c3:6f:ee:ab:c8
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>Definitions</h4>
+
+<p><strong>Virtual Inter Face (VIF)</strong>: A VIF, which represents a virtual NIC on a virtual machine. VIF objects have a name and description, a globally unique UUID, and the network and VM they are connected to.</p>
+
+<p><em>Xen Server version 6.2.0 documentation (cli xe command vbd).</em><br/>
+<em>Retrieved from</em><br/>
+<a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vbd">cli xe command reference</a></p>
 ]]></content>
   </entry>
   
@@ -102,55 +120,27 @@ mac address of a vm running on Citrix Xen Server.</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /sys/class/net/bond0/bonding/mode
+</span><span class='line'>balance-rr 0&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;h1&gt;cat /sys/class/net/bond0/bonding/mode&lt;/h1&gt;
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@server ~<span class="o">]</span>%# cat /proc/net/bonding/bond0 | grep -i mode
+</span><span class='line'>Bonding Mode: load balancing <span class="o">(</span>round-robin<span class="o">)</span>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;balance-rr 0&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;cat /proc/net/bonding/bond0 | grep -i mode&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Bonding Mode: load balancing <span class="o">(</span>round-robin<span class="o">)</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;cat /etc/modprobe.d/bonding.conf&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;alias bond0 bonding
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@server ~<span class="o">]</span>%# cat /etc/modprobe.d/bonding.conf
+</span><span class='line'><span class="nb">alias </span>bond0 bonding
 </span><span class='line'>options bond0 <span class="nv">mode</span><span class="o">=</span>1 <span class="nv">miimon</span><span class="o">=</span>100
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><strong>Make changes</strong>
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;sed -i<span class="s1">&#39;.bak&#39;</span> -e &amp;lsquo;/options.*/d&amp;rsquo; /etc/modprobe.d/bonding.conf&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;echo &amp;lsquo;BONDING_OPTS<span class="o">=</span>&amp;ldquo;mode<span class="o">=</span>1 <span class="nv">miimon</span><span class="o">=</span>100&amp;rdquo;&amp;rsquo; &gt;&gt; /etc/sysconfig/networking-scripts/ifcfg-bond0&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% sed -i<span class="s1">&#39;.bak&#39;</span> -e &amp;lsquo;/options.*/d&amp;rsquo; /etc/modprobe.d/bonding.conf
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% <span class="nb">echo</span> &amp;lsquo;BONDING_OPTS<span class="o">=</span>&amp;ldquo;mode<span class="o">=</span>1 <span class="nv">miimon</span><span class="o">=</span>100&amp;rdquo;&amp;rsquo; &gt;&gt; /etc/sysconfig/networking-scripts/ifcfg-bond0
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><strong>Restart Network</strong>
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;service network restart&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% service network restart
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><strong>Verify bonding mode</strong>
@@ -162,27 +152,19 @@ mac address of a vm running on Citrix Xen Server.</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /sys/class/net/bond0/bonding/mode
+</span><span class='line'>active-backup 1&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;h1&gt;cat /sys/class/net/bond0/bonding/mode&lt;/h1&gt;
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@server ~<span class="o">]</span>% cat /proc/net/bonding/bond0 | grep -i mode
+</span><span class='line'>Bonding Mode: fault-tolerance <span class="o">(</span>active-backup<span class="o">)</span>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;active-backup 1&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;cat /proc/net/bonding/bond0 | grep -i mode&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Bonding Mode: fault-tolerance <span class="o">(</span>active-backup<span class="o">)</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;cat /etc/modprobe.d/bonding.conf&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;alias bond0 bonding
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@server ~<span class="o">]</span>% cat /etc/modprobe.d/bonding.conf
+</span><span class='line'><span class="nb">alias </span>bond0 bonding
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h1>Setting up nic bonding from scratch</h1>
+<hr />
+
+<h2>Setting up nic bonding from scratch</h2>
 
 <hr />
 
@@ -191,7 +173,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 <p>1.) Edit the  /etc/modprobe.d/bonding.conf
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/modprobe.d/bonding.conf</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi /etc/modprobe.d/bonding.conf
 </span><span class='line'><span class="nb">alias </span>bond0 bonding
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
@@ -200,7 +182,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/sysconfig/network</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi /etc/sysconfig/network
 </span><span class='line'><span class="nv">NETWORKING</span><span class="o">=</span>yes
 </span><span class='line'><span class="nv">HOSTNAME</span><span class="o">=</span>your.hostname.here
 </span><span class='line'><span class="nv">GATEWAY</span><span class="o">=</span>1.1.1.1
@@ -211,7 +193,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/resolv.conf</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi /etc/resolv.conf
 </span><span class='line'>search example.com
 </span><span class='line'>nameserver 1.1.1.2
 </span><span class='line'>nameserver 1.1.1.3
@@ -227,7 +209,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-bond0</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi  /etc/sysconfig/network-scripts/ifcfg-bond0
 </span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>bond0
 </span><span class='line'><span class="nv">USERCTL</span><span class="o">=</span>no
 </span><span class='line'><span class="nv">BOOTPROTO</span><span class="o">=</span>none
@@ -247,7 +229,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-eth0</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi  /etc/sysconfig/network-scripts/ifcfg-eth0
 </span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>”eth0″
 </span><span class='line'><span class="nv">SLAVE</span><span class="o">=</span>”yes”
 </span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span>”yes”
@@ -266,7 +248,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-eth1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi  /etc/sysconfig/network-scripts/ifcfg-eth1
 </span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>”eth1″
 </span><span class='line'><span class="nv">SLAVE</span><span class="o">=</span>”yes”
 </span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span>”yes”
@@ -278,7 +260,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 
 <p>7.) Load the bonding kernel module
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># modprobe bonding</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% modprobe bonding
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>8.) restart the network
@@ -318,7 +300,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ping 1.1.1.1&lt;/p&gt;</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% ping 1.1.1.1&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;PING 1.1.1.1 <span class="o">(</span>1.1.1.1<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
 </span><span class='line'>64 bytes from 1.1.1.1: <span class="nv">icmp_seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>255 <span class="nb">time</span><span class="o">=</span>1.89 ms
@@ -330,7 +312,7 @@ mac address of a vm running on Citrix Xen Server.</p>
 </span><span class='line'>4 packets transmitted, 4 received, 0% packet loss, <span class="nb">time </span>3003ms
 </span><span class='line'>rtt min/avg/max/mdev <span class="o">=</span> 0.872/1.476/2.253/0.612 ms&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># host www.google.com</span>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span>% host www.google.com
 </span><span class='line'>host www.google.com
 </span><span class='line'>www.google.com has address 74.125.224.177
 </span><span class='line'>www.google.com has address 74.125.224.178
@@ -339,21 +321,23 @@ mac address of a vm running on Citrix Xen Server.</p>
 </span><span class='line'>www.google.com has address 74.125.224.176
 </span><span class='line'>www.google.com has IPv6 address 2607:f8b0:4007:800::1010&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># cat /proc/net/bonding/bond0 | grep -i mode</span>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span>% cat /proc/net/bonding/bond0 | grep -i mode
 </span><span class='line'>Bonding Mode: fault-tolerance <span class="o">(</span>active-backup<span class="o">)</span>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># cat /sys/class/net/bond0/bonding/mode</span>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span>% cat /sys/class/net/bond0/bonding/mode
 </span><span class='line'>active-backup 1&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ifdown eth0</span>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span>% ifdown eth0
 </span><span class='line'>from another host ping your server, <span class="k">if </span>the ping is good, <span class="k">then </span>ssh to it. If you can reach your server via ping and ssh <span class="k">then </span>the nic bonding is working as it should.&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ifup eth0</span>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@host ~<span class="o">]</span>% ifup eth0
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>Reference.</p>
+<h5>Reference</h5>
 
-<p><a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-networkscripts-interfaces-chan.html" title="RedHat Docs">Redhat Docs for bonding</a></p>
+<p><em>Red Hat Enterprise Linux 6 Deployment Guide</em><br/>
+<em>Retrieved from</em><br/>
+<em><a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-networkscripts-interfaces-chan.html" title="RedHat Docs">Redhat Docs for bonding</a></em></p>
 ]]></content>
   </entry>
   

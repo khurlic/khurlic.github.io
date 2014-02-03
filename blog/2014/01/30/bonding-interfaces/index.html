@@ -137,13 +137,13 @@ posted in
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># cat /sys/class/net/bond0/bonding/mode</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /sys/class/net/bond0/bonding/mode
 </span><span class='line'>balance-rr 0
 </span><span class='line'>
-</span><span class='line'><span class="c"># cat /proc/net/bonding/bond0 | grep -i mode</span>
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>%# cat /proc/net/bonding/bond0 | grep -i mode
 </span><span class='line'>Bonding Mode: load balancing <span class="o">(</span>round-robin<span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="c"># cat /etc/modprobe.d/bonding.conf</span>
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>%# cat /etc/modprobe.d/bonding.conf
 </span><span class='line'><span class="nb">alias </span>bond0 bonding
 </span><span class='line'>options bond0 <span class="nv">mode</span><span class="o">=</span>1 <span class="nv">miimon</span><span class="o">=</span>100
 </span></code></pre></td></tr></table></div></figure>
@@ -153,15 +153,15 @@ posted in
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># sed -i&#39;.bak&#39; -e &#39;/options.*/d&#39; /etc/modprobe.d/bonding.conf</span>
-</span><span class='line'><span class="c"># echo &#39;BONDING_OPTS=&quot;mode=1 miimon=100&quot;&#39; &gt;&gt; /etc/sysconfig/networking-scripts/ifcfg-bond0</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% sed -i<span class="s1">&#39;.bak&#39;</span> -e <span class="s1">&#39;/options.*/d&#39;</span> /etc/modprobe.d/bonding.conf
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% <span class="nb">echo</span> <span class="s1">&#39;BONDING_OPTS=&quot;mode=1 miimon=100&quot;&#39;</span> &gt;&gt; /etc/sysconfig/networking-scripts/ifcfg-bond0
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p><strong>Restart Network</strong></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># service network restart</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% service network restart
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -175,18 +175,20 @@ posted in
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># cat /sys/class/net/bond0/bonding/mode</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /sys/class/net/bond0/bonding/mode
 </span><span class='line'>active-backup 1
 </span><span class='line'>
-</span><span class='line'><span class="c"># cat /proc/net/bonding/bond0 | grep -i mode</span>
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /proc/net/bonding/bond0 | grep -i mode
 </span><span class='line'>Bonding Mode: fault-tolerance <span class="o">(</span>active-backup<span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="c"># cat /etc/modprobe.d/bonding.conf</span>
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /etc/modprobe.d/bonding.conf
 </span><span class='line'><span class="nb">alias </span>bond0 bonding
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h1>Setting up nic bonding from scratch</h1>
+<hr />
+
+<h2>Setting up nic bonding from scratch</h2>
 
 <hr />
 
@@ -196,7 +198,7 @@ posted in
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/modprobe.d/bonding.conf</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi /etc/modprobe.d/bonding.conf
 </span><span class='line'><span class="nb">alias </span>bond0 bonding
 </span></code></pre></td></tr></table></div></figure>
 
@@ -207,7 +209,7 @@ posted in
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/sysconfig/network</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi /etc/sysconfig/network
 </span><span class='line'><span class="nv">NETWORKING</span><span class="o">=</span>yes
 </span><span class='line'><span class="nv">HOSTNAME</span><span class="o">=</span>your.hostname.here
 </span><span class='line'><span class="nv">GATEWAY</span><span class="o">=</span>1.1.1.1
@@ -220,7 +222,7 @@ posted in
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi /etc/resolv.conf</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi /etc/resolv.conf
 </span><span class='line'>search example.com
 </span><span class='line'>nameserver 1.1.1.2
 </span><span class='line'>nameserver 1.1.1.3
@@ -238,7 +240,7 @@ posted in
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-bond0</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi  /etc/sysconfig/network-scripts/ifcfg-bond0
 </span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>bond0
 </span><span class='line'><span class="nv">USERCTL</span><span class="o">=</span>no
 </span><span class='line'><span class="nv">BOOTPROTO</span><span class="o">=</span>none
@@ -260,7 +262,7 @@ posted in
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-eth0</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi  /etc/sysconfig/network-scripts/ifcfg-eth0
 </span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>”eth0″
 </span><span class='line'><span class="nv">SLAVE</span><span class="o">=</span>”yes”
 </span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span>”yes”
@@ -281,7 +283,7 @@ posted in
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># vi  /etc/sysconfig/network-scripts/ifcfg-eth1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% vi  /etc/sysconfig/network-scripts/ifcfg-eth1
 </span><span class='line'><span class="nv">DEVICE</span><span class="o">=</span>”eth1″
 </span><span class='line'><span class="nv">SLAVE</span><span class="o">=</span>”yes”
 </span><span class='line'><span class="nv">ONBOOT</span><span class="o">=</span>”yes”
@@ -295,7 +297,7 @@ posted in
 <p>7.) Load the bonding kernel module</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># modprobe bonding</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% modprobe bonding
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -339,7 +341,7 @@ posted in
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ping 1.1.1.1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% ping 1.1.1.1
 </span><span class='line'>
 </span><span class='line'>PING 1.1.1.1 <span class="o">(</span>1.1.1.1<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
 </span><span class='line'>64 bytes from 1.1.1.1: <span class="nv">icmp_seq</span><span class="o">=</span>1 <span class="nv">ttl</span><span class="o">=</span>255 <span class="nb">time</span><span class="o">=</span>1.89 ms
@@ -351,7 +353,7 @@ posted in
 </span><span class='line'>4 packets transmitted, 4 received, 0% packet loss, <span class="nb">time </span>3003ms
 </span><span class='line'>rtt min/avg/max/mdev <span class="o">=</span> 0.872/1.476/2.253/0.612 ms
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># host www.google.com</span>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% host www.google.com
 </span><span class='line'>host www.google.com
 </span><span class='line'>www.google.com has address 74.125.224.177
 </span><span class='line'>www.google.com has address 74.125.224.178
@@ -360,22 +362,24 @@ posted in
 </span><span class='line'>www.google.com has address 74.125.224.176
 </span><span class='line'>www.google.com has IPv6 address 2607:f8b0:4007:800::1010
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># cat /proc/net/bonding/bond0 | grep -i mode</span>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% cat /proc/net/bonding/bond0 | grep -i mode
 </span><span class='line'>Bonding Mode: fault-tolerance <span class="o">(</span>active-backup<span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># cat /sys/class/net/bond0/bonding/mode</span>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% cat /sys/class/net/bond0/bonding/mode
 </span><span class='line'>active-backup 1
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ifdown eth0</span>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% ifdown eth0
 </span><span class='line'>from another host ping your server, <span class="k">if </span>the ping is good, <span class="k">then </span>ssh to it. If you can reach your server via ping and ssh <span class="k">then </span>the nic bonding is working as it should.
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span><span class="c"># ifup eth0</span>
+</span><span class='line'><span class="o">[</span>root@host ~<span class="o">]</span>% ifup eth0
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Reference.</p>
+<h5>Reference</h5>
 
-<p><a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-networkscripts-interfaces-chan.html" title="RedHat Docs">Redhat Docs for bonding</a></p>
+<p><em>Red Hat Enterprise Linux 6 Deployment Guide</em><br/>
+<em>Retrieved from</em><br/>
+<em><a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-networkscripts-interfaces-chan.html" title="RedHat Docs">Redhat Docs for bonding</a></em></p>
 </div>
 
 

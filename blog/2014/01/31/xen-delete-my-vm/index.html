@@ -13,7 +13,7 @@
   
     
   
-  <meta name="description" content="This blog post will show you how to delete the vm of your chooseing and it&rsquo;s
+  <meta name="description" content="This blog post will show you how to delete the vm of your choosing and it&rsquo;s
 primary disk from a Citrix Xen Server. A few things to keep in &hellip;">
   
   <!-- http://t.co/dKP3o1e -->
@@ -30,7 +30,7 @@ primary disk from a Citrix Xen Server. A few things to keep in &hellip;">
   <meta name="og:type" content="website" />
   <meta name="og:site_name" content="Keith Hurlic" />
   <meta name="og:title" content="xen delete my vm" />
-  <meta name="og:description" content="This blog post will show you how to delete the vm of your chooseing and it&rsquo;s
+  <meta name="og:description" content="This blog post will show you how to delete the vm of your choosing and it&rsquo;s
 primary disk from a Citrix Xen Server. A few things to keep in &hellip;" />
   <meta name="og:url" content="http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm/"/>
   <meta name="url" content="http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm/">
@@ -120,7 +120,7 @@ posted in
   </header>
 
 
-  <div class="entry-content"><p>This blog post will show you how to delete the vm of your chooseing and it&rsquo;s
+  <div class="entry-content"><p>This blog post will show you how to delete the vm of your choosing and it&rsquo;s
 primary disk from a Citrix Xen Server. A few things to keep in mind. Some of
 the disk will show up as xvda vs hda. This depends on how you have configured
 your server.</p>
@@ -156,7 +156,15 @@ your server.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h4>Definitions</h4>
 
+<p><strong>Virtual Block Device (VBD)</strong>: A VBD is a software object that connects a VM to the VDI, which represents the contents of the virtual disk. The VBD has the attributes which tie the VDI to the VM (is it bootable, its read/write metrics, and so on), while the VDI has the information on the physical attributes of the virtual disk (which type of SR, whether the disk is shareable, whether the media is read/write or read only, and so on).</p>
+
+<p><strong>Virtual Disk Image (VDI)</strong>: A VDI is a software object that represents the contents of the virtual disk seen by a VM, as opposed to the VBD, which is a connector object that ties a VM to the VDI. The VDI has the information on the physical attributes of the virtual disk (which type of SR, whether the disk is shareable, whether the media is read/write or read only, and so on), while the VBD has the attributes which tie the VDI to the VM (is it bootable, its read/write metrics, and so on).</p>
+
+<p><em>Xen Server version 6.2.0 documentation (cli xe command vbd).</em><br/>
+<em>Retrieved from</em><br/>
+<a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vbd">cli xe command reference</a></p>
 </div>
 
 
