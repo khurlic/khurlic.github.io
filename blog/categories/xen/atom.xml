@@ -4,7 +4,7 @@
   <title><![CDATA[Category: xen | Keith Hurlic]]></title>
   <link href="http://khurlic.github.io/blog/categories/xen/atom.xml" rel="self"/>
   <link href="http://khurlic.github.io/"/>
-  <updated>2014-02-02T23:07:12-08:00</updated>
+  <updated>2014-02-03T00:17:33-08:00</updated>
   <id>http://khurlic.github.io/</id>
   <author>
     <name><![CDATA[Keith Hurlic]]></name>
@@ -53,7 +53,7 @@ your server.</p>
 </span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-destroy <span class="nv">uuid</span><span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4>Definitions</h4>
+<h4>References</h4>
 
 <p><strong>Virtual Block Device (VBD)</strong>: A VBD is a software object that connects a VM to the VDI, which represents the contents of the virtual disk. The VBD has the attributes which tie the VDI to the VM (is it bootable, its read/write metrics, and so on), while the VDI has the information on the physical attributes of the virtual disk (which type of SR, whether the disk is shareable, whether the media is read/write or read only, and so on).</p>
 
@@ -87,13 +87,13 @@ mac address of a vm running on Citrix Xen Server.</p>
 </span><span class='line'>MAC <span class="o">(</span> RO<span class="o">)</span>    : 3a:c3:6f:ee:ab:c8
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<h4>Definitions</h4>
+<h4>References</h4>
 
 <p><strong>Virtual Inter Face (VIF)</strong>: A VIF, which represents a virtual NIC on a virtual machine. VIF objects have a name and description, a globally unique UUID, and the network and VM they are connected to.</p>
 
-<p><em>Xen Server version 6.2.0 documentation (cli xe command vbd).</em><br/>
+<p><em>Xen Server version 6.2.0 documentation (cli xe command vif).</em><br/>
 <em>Retrieved from</em><br/>
-<a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vbd">cli xe command reference</a></p>
+<em><a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vif">cli xe command reference</a></em></p>
 ]]></content>
   </entry>
   

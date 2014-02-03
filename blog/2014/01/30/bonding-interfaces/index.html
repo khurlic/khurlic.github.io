@@ -140,10 +140,10 @@ posted in
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /sys/class/net/bond0/bonding/mode
 </span><span class='line'>balance-rr 0
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>%# cat /proc/net/bonding/bond0 | grep -i mode
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /proc/net/bonding/bond0 | grep -i mode
 </span><span class='line'>Bonding Mode: load balancing <span class="o">(</span>round-robin<span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>%# cat /etc/modprobe.d/bonding.conf
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /etc/modprobe.d/bonding.conf
 </span><span class='line'><span class="nb">alias </span>bond0 bonding
 </span><span class='line'>options bond0 <span class="nv">mode</span><span class="o">=</span>1 <span class="nv">miimon</span><span class="o">=</span>100
 </span></code></pre></td></tr></table></div></figure>

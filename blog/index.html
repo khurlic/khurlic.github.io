@@ -129,7 +129,7 @@ your server.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Definitions</h4>
+<h4>References</h4>
 
 <p><strong>Virtual Block Device (VBD)</strong>: A VBD is a software object that connects a VM to the VDI, which represents the contents of the virtual disk. The VBD has the attributes which tie the VDI to the VM (is it bootable, its read/write metrics, and so on), while the VDI has the information on the physical attributes of the virtual disk (which type of SR, whether the disk is shareable, whether the media is read/write or read only, and so on).</p>
 
@@ -211,13 +211,13 @@ mac address of a vm running on Citrix Xen Server.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Definitions</h4>
+<h4>References</h4>
 
 <p><strong>Virtual Inter Face (VIF)</strong>: A VIF, which represents a virtual NIC on a virtual machine. VIF objects have a name and description, a globally unique UUID, and the network and VM they are connected to.</p>
 
-<p><em>Xen Server version 6.2.0 documentation (cli xe command vbd).</em><br/>
+<p><em>Xen Server version 6.2.0 documentation (cli xe command vif).</em><br/>
 <em>Retrieved from</em><br/>
-<a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vbd">cli xe command reference</a></p>
+<em><a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vif">cli xe command reference</a></em></p>
 </div>
   
   
@@ -295,10 +295,10 @@ posted in
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /sys/class/net/bond0/bonding/mode
 </span><span class='line'>balance-rr 0
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>%# cat /proc/net/bonding/bond0 | grep -i mode
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /proc/net/bonding/bond0 | grep -i mode
 </span><span class='line'>Bonding Mode: load balancing <span class="o">(</span>round-robin<span class="o">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>%# cat /etc/modprobe.d/bonding.conf
+</span><span class='line'><span class="o">[</span>root@server ~<span class="o">]</span>% cat /etc/modprobe.d/bonding.conf
 </span><span class='line'><span class="nb">alias </span>bond0 bonding
 </span><span class='line'>options bond0 <span class="nv">mode</span><span class="o">=</span>1 <span class="nv">miimon</span><span class="o">=</span>100
 </span></code></pre></td></tr></table></div></figure>
