@@ -1,151 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Keith Hurlic</title>
-  <meta name="author" content="Keith Hurlic">
-  <link rel="author" href="humans.txt">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  
+  <title><![CDATA[Keith Hurlic]]></title>
+  <link href="http://khurlic.github.io/atom.xml" rel="self"/>
+  <link href="http://khurlic.github.io/"/>
+  <updated>2015-02-06T15:06:57-08:00</updated>
+  <id>http://khurlic.github.io/</id>
+  <author>
+    <name><![CDATA[Keith Hurlic]]></name>
     
-  
-  <meta name="description" content=" from Los Angeles ">
-  
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-  <link rel="canonical" href="http://khurlic.github.io/">
-  <link href="/favicon.png" rel="icon">
-  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Keith Hurlic" type="application/atom+xml">
-  <meta name="og:type" content="website" />
-  <meta name="og:site_name" content="Keith Hurlic" />
-  <meta name="og:title" content="Keith Hurlic" />
-  <meta name="og:description" content=" from Los Angeles " />
-  <meta name="og:url" content="http://khurlic.github.io/index.html"/>
-  <meta name="url" content="http://khurlic.github.io/index.html">
-  
-  <meta name="distribution" content="global">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-
-</head>
-
-<body   >
-  <div id="front-wrapper">
-  <div id="hero">
-    <div id="hero-inner" class="container">
-      <div class="span10 offset1">
-  <h1>
-    Keith Hurlic
-  </h1>
-  <h2>Sr. Systems Engineer by day. Forever a Skateboarder at heart.</h2>
-</div>
-
-    </div>
-  </div>
-  <section id="sub-hero">
-    <div class="container">
-      <div class="row">
-  <div class="span4">
-    <h2>about me</h2>
-<p>A little something about me.</p>
-
-  </div>
-  <div class="span6">
-    
-<h2>recent public projects</h2>
-<dl id="gh_repos" class="dl-horizontal" data-github-user="khurlic" data-github-repo-count="0" data-github-skip-forks="true">
-  <dd class="loading">Status updating&#8230;</dd>
-</dl>
-<script src="/javascripts/github.js" type="text/javascript"> </script>
-<script src="/javascripts/libs/jXHR.js" type="text/javascript"> </script>
-
-
-  </div>
-  <div class="span2">
-    <h2>found on</h2>
-
-<a href="https://github.com/khurlic/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
-
-
-
-
-
-
-
-
-
-<a href="https://plus.google.com/+KeithHurlic?rel=author" rel="tooltip" title="Google Plus"><img class="social_icon" title="Google Plus" alt="Google Plus icon" src="/images/glyphicons_386_google_plus.png"></a>
-
-
-
-
-
-
-  </div>
-</div>
-
-    </div>
-  </section>
-  <div class="container">
-    <div class="row" id="post-container">
-    
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/02/06/install-puppet-on-amazon-linux-ami/">Install Puppet 3.x on Amazon Linux AMI</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-02-06T13:53:50-08:00" pubdate data-updated="true">Feb 6<span>th</span>, 2015</time> - 
-        
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I came across an interesting issue with puppet today. Im using the Amazon Linux AMI<br/>
+  <entry>
+    <title type="html"><![CDATA[install puppet 3.x on Amazon Linux AMI]]></title>
+    <link href="http://khurlic.github.io/blog/2015/02/06/install-puppet-on-amazon-linux-ami/"/>
+    <updated>2015-02-06T13:53:50-08:00</updated>
+    <id>http://khurlic.github.io/blog/2015/02/06/install-puppet-on-amazon-linux-ami</id>
+    <content type="html"><![CDATA[<p>I came across an interesting issue with puppet today. Im using the Amazon Linux AMI<br/>
 and I discovered that it is running an older version puppet. I did not think much of<br/>
 it. So I installed the puppet labs yum repo and installed the new shiny 3.7.x version<br/>
 of puppet. When I did my test run. I received lots of errors which caused me to do<br/>
@@ -176,64 +49,15 @@ to save someone else some time and hair.</p>
 <p><em>Puppet 3.X is now broken on Amazon AWS due to Ruby 2.0 being the default</em>
 <em>Retrieved from</em>
 <em><a href="https://tickets.puppetlabs.com/browse/PUP-2132">puppet jira ticket</a></em></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/31/xen-delete-my-vm/">Xen Delete My Vm</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-31T17:00:49-08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>, <a class='category' href='/blog/categories/xen/'>xen</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This blog post will show you how to delete the vm of your choosing and it&rsquo;s
+  <entry>
+    <title type="html"><![CDATA[xen delete my vm]]></title>
+    <link href="http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm/"/>
+    <updated>2014-01-31T17:00:49-08:00</updated>
+    <id>http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm</id>
+    <content type="html"><![CDATA[<p>This blog post will show you how to delete the vm of your choosing and it&rsquo;s
 primary disk from a Citrix Xen Server. A few things to keep in mind. Some of
 the disk will show up as xvda vs hda. This depends on how you have configured
 your server.</p>
@@ -278,64 +102,15 @@ your server.</p>
 <p><em>Xen Server version 6.2.0 documentation (cli xe command vbd).</em><br/>
 <em>Retrieved from</em><br/>
 <a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vbd">cli xe command reference</a></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/31/xen-find-my-mac/">Xen Find My Mac</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-31T15:51:36-08:00" pubdate data-updated="true">Jan 31<span>st</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>, <a class='category' href='/blog/categories/xen/'>xen</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Not all companies will hand you a shiny new or old windows laptop. Not all companies
+  <entry>
+    <title type="html"><![CDATA[xen find my mac]]></title>
+    <link href="http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac/"/>
+    <updated>2014-01-31T15:51:36-08:00</updated>
+    <id>http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac</id>
+    <content type="html"><![CDATA[<p>Not all companies will hand you a shiny new or old windows laptop. Not all companies
 will purchase a Windows license to run as a VM. This is will force you to
 use the cli to get your job done. The blog post will show you have to find the
 mac address of a vm running on Citrix Xen Server.</p>
@@ -360,64 +135,15 @@ mac address of a vm running on Citrix Xen Server.</p>
 <p><em>Xen Server version 6.2.0 documentation (cli xe command vif).</em><br/>
 <em>Retrieved from</em><br/>
 <em><a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vif">cli xe command reference</a></em></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/30/bonding-interfaces/">Channel Bonding Interfaces the RedHat 6.x Way</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+KeithHurlic?rel=author"><span class="fn">Keith Hurlic</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-30T20:35:32-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/tech/'>tech</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently at work, I received an email from my networking team on why they were seeing the following error.</p>
+  <entry>
+    <title type="html"><![CDATA[Channel Bonding Interfaces the RedHat 6.x way]]></title>
+    <link href="http://khurlic.github.io/blog/2014/01/30/bonding-interfaces/"/>
+    <updated>2014-01-30T20:35:32-08:00</updated>
+    <id>http://khurlic.github.io/blog/2014/01/30/bonding-interfaces</id>
+    <content type="html"><![CDATA[<p>Recently at work, I received an email from my networking team on why they were seeing the following error.</p>
 
 <p>%SW_MATM-4-MACFLAP_NOTIF: Host dddd.dddd.dddd in vlan 100 is flapping between port Te1/0/1 and port Gi2/0/22.</p>
 
@@ -679,136 +405,7 @@ posted in
 <p><em>Red Hat Enterprise Linux 6 Deployment Guide</em><br/>
 <em>Retrieved from</em><br/>
 <em><a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-networkscripts-interfaces-chan.html" title="RedHat Docs">Redhat Docs for bonding</a></em></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    </div>
-      <div class="row">
-        <ul class="pager">
-          
-          
-        </ul>
-      </div>
-  </div>
-</div>
-
-
-  <div id="footer-widgets">
-  <div class="container">
-    <div class="row">
-  <div class="span3">
-    <h2>recent posts</h2>
-    <ul class="recent_posts">
-      
-        <li>
-          <a href="/blog/2015/02/06/install-puppet-on-amazon-linux-ami/">install puppet 3.x on Amazon Linux AMI</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/01/31/xen-delete-my-vm/">xen delete my vm</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/01/31/xen-find-my-mac/">xen find my mac</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/01/30/bonding-interfaces/">Channel Bonding Interfaces the RedHat 6.x way</a>
-        </li>
-      
-    </ul>
-    <h2><a href="/blog/archives">archives</a></h2>
-  </div>
-  <div class="span3">
-    
-
-  </div>
-  <div class="span4">
-    
-
-  </div>
-  <div class="span2">
-    <h2>found on</h2>
-
-<a href="https://github.com/khurlic/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
-
-
-
-
-
-
-
-
-
-<a href="https://plus.google.com/+KeithHurlic?rel=author" rel="tooltip" title="Google Plus"><img class="social_icon" title="Google Plus" alt="Google Plus icon" src="/images/glyphicons_386_google_plus.png"></a>
-
-
-
-
-
-
-  </div>
-</div>
-
-  </div>
-</div>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-left">
-  <a href="/">Keith Hurlic</a>
-  - Copyright &copy; 2015 - Keith Hurlic
-</p>
-<p class="pull-right">
-  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
-  
-    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
-  
-</p>
-
-  </div>
-</footer>
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
-<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
-<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
-<script src="/javascripts/custom.js" type="text/javascript"></script>
-
-
-
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-</body>
-</html>
+</feed>

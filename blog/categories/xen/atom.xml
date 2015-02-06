@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: xen | Keith Hurlic]]></title>
+  <link href="http://khurlic.github.io/blog/categories/xen/atom.xml" rel="self"/>
+  <link href="http://khurlic.github.io/"/>
+  <updated>2015-02-06T15:06:57-08:00</updated>
+  <id>http://khurlic.github.io/</id>
+  <author>
+    <name><![CDATA[Keith Hurlic]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[xen delete my vm]]></title>
+    <link href="http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm/"/>
+    <updated>2014-01-31T17:00:49-08:00</updated>
+    <id>http://khurlic.github.io/blog/2014/01/31/xen-delete-my-vm</id>
+    <content type="html"><![CDATA[<p>This blog post will show you how to delete the vm of your choosing and it&rsquo;s
+primary disk from a Citrix Xen Server. A few things to keep in mind. Some of
+the disk will show up as xvda vs hda. This depends on how you have configured
+your server.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-list name-label<span class="o">=</span>testserver <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 3df485ee-0e99-2851-cf6c-e0c7517e68fd&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-shutdown <span class="nv">uuid</span><span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vbd-list vm-uuid<span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd <span class="nv">device</span><span class="o">=</span>hda <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : bfdb0ba5-b397-e6f5-3ba1-5aa9df6dd0ce&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vdi-list vbd-uuids<span class="o">=</span>bfdb0ba5-b397-e6f5-3ba1-5aa9df6dd0ce <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 07d5c7f8-40d1-4276-ba0c-5fde960ab527&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vdi-destroy <span class="nv">uuid</span><span class="o">=</span>07d5c7f8-40d1-4276-ba0c-5fde960ab527&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-destroy <span class="nv">uuid</span><span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>References</h4>
+
+<p><strong>Virtual Block Device (VBD)</strong>: A VBD is a software object that connects a VM to the VDI, which represents the contents of the virtual disk. The VBD has the attributes which tie the VDI to the VM (is it bootable, its read/write metrics, and so on), while the VDI has the information on the physical attributes of the virtual disk (which type of SR, whether the disk is shareable, whether the media is read/write or read only, and so on).</p>
+
+<p><strong>Virtual Disk Image (VDI)</strong>: A VDI is a software object that represents the contents of the virtual disk seen by a VM, as opposed to the VBD, which is a connector object that ties a VM to the VDI. The VDI has the information on the physical attributes of the virtual disk (which type of SR, whether the disk is shareable, whether the media is read/write or read only, and so on), while the VBD has the attributes which tie the VDI to the VM (is it bootable, its read/write metrics, and so on).</p>
+
+<p><em>Xen Server version 6.2.0 documentation (cli xe command vbd).</em><br/>
+<em>Retrieved from</em><br/>
+<a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vbd">cli xe command reference</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[xen find my mac]]></title>
+    <link href="http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac/"/>
+    <updated>2014-01-31T15:51:36-08:00</updated>
+    <id>http://khurlic.github.io/blog/2014/01/31/xen-find-my-mac</id>
+    <content type="html"><![CDATA[<p>Not all companies will hand you a shiny new or old windows laptop. Not all companies
+will purchase a Windows license to run as a VM. This is will force you to
+use the cli to get your job done. The blog post will show you have to find the
+mac address of a vm running on Citrix Xen Server.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vm-list name-label<span class="o">=</span>&lt;your vm name here&gt; <span class="nv">params</span><span class="o">=</span>uuid
+</span><span class='line'>uuid <span class="o">(</span> RO<span class="o">)</span>    : 3df485ee-0e99-2851-cf6c-e0c7517e68fd&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="o">[</span>root@xenserver ~<span class="o">]</span>% xe vif-list vm-uuid<span class="o">=</span>3df485ee-0e99-2851-cf6c-e0c7517e68fd <span class="nv">params</span><span class="o">=</span>MAC
+</span><span class='line'>MAC <span class="o">(</span> RO<span class="o">)</span>    : 3a:c3:6f:ee:ab:c8
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>References</h4>
+
+<p><strong>Virtual Inter Face (VIF)</strong>: A VIF, which represents a virtual NIC on a virtual machine. VIF objects have a name and description, a globally unique UUID, and the network and VM they are connected to.</p>
+
+<p><em>Xen Server version 6.2.0 documentation (cli xe command vif).</em><br/>
+<em>Retrieved from</em><br/>
+<em><a href="http://docs.vmd.citrix.com/XenServer/6.2.0/1.0/en_gb/reference.html#cli-xe-commands_vif">cli xe command reference</a></em></p>
+]]></content>
+  </entry>
+  
+</feed>
