@@ -4,7 +4,7 @@
 
 url: http://khurlic.github.io
 title: Keith Hurlic
-subtitle: Sr. Systems Engineer by day. Forever a Skateboarder at heart. 
+subtitle: Sr. Systems Engineer by day. Forever a Skateboarder at heart.
 author: Keith Hurlic
 simple_search: http://google.com/search
 description: from Los Angeles
@@ -16,10 +16,10 @@ description: from Los Angeles
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /atom.xml
-subscribe_email:
+#subscribe_rss: /atom.xml
+#subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+#email:
 
 # ----------------------- #
 #    Jekyll & Plugins     #

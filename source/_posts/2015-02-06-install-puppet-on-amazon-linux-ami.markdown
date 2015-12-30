@@ -12,7 +12,7 @@ of puppet. When I did my test run. I received lots of errors which caused me to 
 some googling. I finally got everything working. Im posting what I did here in order  
 to save someone else some time and hair.
 
-{% codeblock lang:bash %}
+```bash
 [user@host ~]% sudo yum erase puppet
 [user@host ~]% sudo rpm -ivh https://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
 [user@host ~]% sudo sed -i'' -e '/[main].*/ {N; s/enabled = 0/enabled = 04/g}' /etc/yum/pluginconf.d/priorities.conf
@@ -21,7 +21,7 @@ to save someone else some time and hair.
 [user@host ~]% sudo alternatives --set ruby /usr/bin/ruby1.8
 [user@host ~]% sudo puppet --version
 3.7.4
-{% endcodeblock %}
+```
 
 ####References
 *Puppet 3.X is now broken on Amazon AWS due to Ruby 2.0 being the default*

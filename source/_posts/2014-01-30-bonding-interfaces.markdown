@@ -15,7 +15,7 @@ I tracked down the mac from the message above. (mac changed for security) I logg
 Here are the commands I took to correct the issue.
 
 **Verify bonding mode**
-{% codeblock lang:bash %}
+```bash
 [root@server ~]% cat /sys/class/net/bond0/bonding/mode
 balance-rr 0
 
@@ -25,21 +25,21 @@ Bonding Mode: load balancing (round-robin)
 [root@server ~]% cat /etc/modprobe.d/bonding.conf
 alias bond0 bonding
 options bond0 mode=1 miimon=100
-{% endcodeblock %}
+```
 
 **Make changes**
-{% codeblock lang:bash %}
+```bash
 [root@server ~]% sed -i'.bak' -e '/options.*/d' /etc/modprobe.d/bonding.conf
 [root@server ~]% echo 'BONDING_OPTS="mode=1 miimon=100"' >> /etc/sysconfig/networking-scripts/ifcfg-bond0
-{% endcodeblock %}
+```
 
 **Restart Network**
-{% codeblock lang:bash %}
+```bash
 [root@server ~]% service network restart
-{% endcodeblock %}
+```
 
 **Verify bonding mode**
-{% codeblock lang:bash %}
+```bash
 [root@server ~]% cat /sys/class/net/bond0/bonding/mode
 active-backup 1
 
@@ -48,7 +48,7 @@ Bonding Mode: fault-tolerance (active-backup)
 
 [root@server ~]% cat /etc/modprobe.d/bonding.conf
 alias bond0 bonding
-{% endcodeblock %}
+```
 
 
 _____
@@ -58,29 +58,29 @@ _____
 Change all of the example IP addresses from 1.1.1.x to the IP addresses that work in your environment.
 
 1.) Edit the  /etc/modprobe.d/bonding.conf
-{% codeblock lang:bash %}
+```bash
 [root@host ~]% vi /etc/modprobe.d/bonding.conf
 alias bond0 bonding
-{% endcodeblock %}
+```
 
 2.) Edit the /etc/sysconfig/network
-{% codeblock lang:bash %}
+```bash
 [root@host ~]% vi /etc/sysconfig/network
 NETWORKING=yes
 HOSTNAME=your.hostname.here
 GATEWAY=1.1.1.1
-{% endcodeblock %}
+```
 
 3.) Edit the /etc/resolv.conf
-{% codeblock lang:bash %}
+```bash
 [root@host ~]% vi /etc/resolv.conf
 search example.com
 nameserver 1.1.1.2
 nameserver 1.1.1.3
-{% endcodeblock %}
+```
 
 4.) Edit the /etc/sysconfig/network-scripts/ifcfg-bond0
-{% codeblock lang:bash %}
+```bash
 [root@host ~]% vi  /etc/sysconfig/network-scripts/ifcfg-bond0
 DEVICE=bond0
 USERCTL=no
@@ -90,10 +90,10 @@ USERCTL=no
 IPADDR=1.1.1.100
 NETMASK=255.255.255.0
 BONDING_OPTS=”mode=1 miimon=100″
-{% endcodeblock %}
+```
 
 5.) Edit the  /etc/sysconfig/network-scripts/ifcfg-eth0
-{% codeblock lang:bash %}
+```bash
 [root@host ~]% vi  /etc/sysconfig/network-scripts/ifcfg-eth0
 DEVICE=”eth0″
 SLAVE=”yes”
@@ -102,10 +102,10 @@ MASTER=”bond0″
 USERCTL=”no”
 BOOTPROTO=none
 NM_CONTROLLED=”no”
-{% endcodeblock %}
+```
 
 6.) Edit the  /etc/sysconfig/network-scripts/ifcfg-eth1
-{% codeblock lang:bash %}
+```bash
 [root@host ~]% vi  /etc/sysconfig/network-scripts/ifcfg-eth1
 DEVICE=”eth1″
 SLAVE=”yes”
@@ -114,20 +114,20 @@ MASTER=”bond0″
 USERCTL=”no”
 BOOTPROTO=none
 NM_CONTROLLED=”no”
-{% endcodeblock %}
+```
 
 7.) Load the bonding kernel module
-{% codeblock lang:bash %}
+```bash
 [root@host ~]% modprobe bonding
-{% endcodeblock %}
+```
 
 8.) restart the network
-{% codeblock lang:bash %}
+```bash
 [root@host ~]# service network restart
-{% endcodeblock %}
+```
 
 9.) Verify changes
-{% codeblock lang:bash %}
+```bash
 [root@host ~]% ping 1.1.1.1
 
 PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
@@ -159,7 +159,7 @@ active-backup 1
 from another host ping your server, if the ping is good, then ssh to it. If you can reach your server via ping and ssh then the nic bonding is working as it should.
 
 [root@host ~]% ifup eth0
-{% endcodeblock %}
+```
 
 #####Reference
 *Red Hat Enterprise Linux 6 Deployment Guide*  

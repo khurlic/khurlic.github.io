@@ -11,7 +11,7 @@ primary disk from a Citrix Xen Server. A few things to keep in mind. Some of
 the disk will show up as xvda vs hda. This depends on how you have configured
 your server. 
 
-{% codeblock lang:bash %}
+```bash
 [root@xenserver ~]% xe vm-list name-label=testserver params=uuid
 uuid ( RO)    : 3df485ee-0e99-2851-cf6c-e0c7517e68fd
 
@@ -26,7 +26,7 @@ uuid ( RO)    : 07d5c7f8-40d1-4276-ba0c-5fde960ab527
 [root@xenserver ~]% xe vdi-destroy uuid=07d5c7f8-40d1-4276-ba0c-5fde960ab527
 
 [root@xenserver ~]% xe vm-destroy uuid=3df485ee-0e99-2851-cf6c-e0c7517e68fd
-{% endcodeblock %}
+```
 
 
 ####References
