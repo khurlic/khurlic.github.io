@@ -186,7 +186,7 @@ select Advanced options => Resuce mode
 12. Click ok
 13. Click Apply
 14. Click ok
-15. Click Exit
+15. Click Exit    
 
 
 
