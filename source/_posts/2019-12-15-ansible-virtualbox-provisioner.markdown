@@ -16,7 +16,7 @@ I stopped to think about this. CentOS 7 is still using yum and python 2.x by def
 Fedora 31 is using dnf and python3.x. Hmm... How does one fix this?  
 
 So took this approach.  
-1. Install python2 on my fedora31 system
+1. Install python2 on my fedora31 system  
 `$ sudo dnf install python2`
 2. Updated my Vagrantfile. The ansible provision block. I added ansible.extra_vars that look like this.
 ```
